@@ -24,6 +24,7 @@ class ApiService {
   }
 
   sortByNid(List<ArticleModel> articles) {
+    //TODO I'm confused by how to controll the state of my list of articles
     articles.sort((a, b) {
       return a.nodeId!.compareTo(b.nodeId!);
     });
