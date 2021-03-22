@@ -1,6 +1,6 @@
 class Default {
   static String imageUrl =
-      "https://i.pinimg.com/originals/05/79/5a/05795a16b647118ffb6629390e995adb.jpg"; //a default orange image
+      "https://dautzenberg.europabasen.no/sites/default/files/default_image.jpg"; //a default image of a sail boat
 
   static String title = "Lorum Ipsum Title";
 

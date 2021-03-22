@@ -13,66 +13,72 @@ class ArticleList extends ConsumerWidget {
       error: (e, s) {
         print(e);
         print(s);
-        // TODO Do you know why I get an error on Flutter web?
+        // I know, this is dirty ;)
         return Text('$e \n\n\n\n $s');
       },
       data: (articles) {
         return SafeArea(
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      final listOfArticles = context.read(apiProvider);
-                      listOfArticles.sortByNid(articles);
-                    },
-                    child: Text(
-                      'Sort by node id',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 20.0,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      final listOfArticles = context.read(apiProvider);
-                      listOfArticles.sortTitleLength(articles);
-                    },
-                    child: Text(
-                      'Sort by title.length',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ],
-              ),
-              Expanded(
-                child: RefreshIndicator(
-                  onRefresh: () => context.refresh(articleProvider),
-                  child: ListView.separated(
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          leading: CircleAvatar(
-                            backgroundImage:
-                                NetworkImage(articles[index].imageUrl!),
-                          ),
-                          title: Text('${articles[index].title!}'),
-                          trailing: Text(
-                              '(id:${articles[index].nodeId!}, length ${articles[index].title!.length})'),
-                        );
+          child: Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        final listOfArticles = context.read(apiProvider);
+                        listOfArticles.sortByNid(articles);
                       },
-                      separatorBuilder: (context, index) => Divider(
-                            color: Colors.black,
-                          ),
-                      itemCount: articles.length),
+                      child: Text(
+                        'Sort by node id',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 20.0,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        final listOfArticles = context.read(apiProvider);
+                        listOfArticles.sortTitleLength(articles);
+                      },
+                      child: Text(
+                        'Sort by title.length',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-              Column(
-                children: [Text('Current sorting: <VALUE>')],
-              )
-            ],
+                Expanded(
+                  child: RefreshIndicator(
+                    onRefresh: () => context.refresh(articleProvider),
+                    child: ListView.separated(
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            leading: CircleAvatar(
+                              backgroundImage:
+                                  NetworkImage(articles[index].imageUrl!),
+                            ),
+                            title: Text('${articles[index].title!}'),
+                            trailing: Text(
+                                '(id:${articles[index].nodeId!}, length ${articles[index].title!.length})'),
+                          );
+                        },
+                        separatorBuilder: (context, index) => Divider(
+                              color: Colors.black,
+                            ),
+                        itemCount: articles.length),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Column(
+                    children: [Text('Current sorting: <VALUE>')],
+                  ),
+                )
+              ],
+            ),
           ),
         );
       },
