@@ -14,8 +14,6 @@ class Home extends ConsumerWidget {
       home: Scaffold(
         appBar: AppBar(
           title: Text('Sort app'),
-          centerTitle: false,
-          actions: [],
         ),
         body: ArticleList(),
         drawer: Drawer(

@@ -1,6 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../models/article_model.dart';
 
@@ -24,8 +22,7 @@ class ApiService {
   }
 
   sortByNid(List<ArticleModel> articles) {
-    //TODO I'm confused by how to controll the state of my list of articles. I want to create a statenotiferprovider, but how do I do that based on a FutureProvider?
-    // I'm inspired by Reso Coders video on State Notifer (https://youtu.be/3OdciTLjSNA?t=698), but don't know how to combine it with a future provider.
+    //TODO I'm confused by how to controll the state of my list of articles. I want to create a statenotiferprovider, but how do I do that based on a FutureProvider? I'm inspired by Reso Coders video on State Notifer (https://youtu.be/3OdciTLjSNA?t=698), but don't know how to combine it with a future provider.
     articles.sort((a, b) {
       return a.nodeId!.compareTo(b.nodeId!);
     });

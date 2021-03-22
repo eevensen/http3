@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:http3/providers/provider.dart';
 
 class CustomSortConfigPage extends ConsumerWidget {
   const CustomSortConfigPage({Key? key}) : super(key: key);
