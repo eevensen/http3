@@ -6,7 +6,7 @@ import 'ui/home.dart';
 void main() {
   runApp(
     ProviderScope(
-      child: Home(),
+      child: HomeScreen(),
     ),
   );
 }

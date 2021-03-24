@@ -6,12 +6,23 @@ class CustomSortConfigPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    return ReorderableListView(
-        children: [],
-        onReorder: (oldIndex, newIndex) {
-          updateMyListItems(oldIndex, newIndex);
-          // Inspired from: Flutter Widget of the Week: https://www.youtube.com/watch?v=3fB1mxOsqJE&ab_channel=Flutter
-        });
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Custom Sort Config Page'),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(child: Text('Custom Sort Config Page')),
+          // ReorderableListView(
+          //     children: [],
+          //     onReorder: (oldIndex, newIndex) {
+          //       updateMyListItems(oldIndex, newIndex);
+          //       // Inspired from: Flutter Widget of the Week: https://www.youtube.com/watch?v=3fB1mxOsqJE&ab_channel=Flutter
+          //     }),
+        ],
+      ),
+    );
   }
 }
 
