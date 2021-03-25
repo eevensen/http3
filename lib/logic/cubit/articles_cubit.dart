@@ -21,17 +21,21 @@ class ArticlesCubit extends Cubit<List<ArticleModel>> {
   }
 
   sortByNid() {
-    //TODO I'm confused by how to controll the state of my list of articles. I want to create a statenotiferprovider, but how do I do that based on a FutureProvider? I'm inspired by Reso Coders video on State Notifer (https://youtu.be/3OdciTLjSNA?t=698), but don't know how to combine it with a future provider.
-    state.sort((a, b) {
-      return a.nodeId!.compareTo(b.nodeId!);
-    });
-    // return emit(state);
+    state.sort(
+      (a, b) {
+        return a.nodeId!.compareTo(b.nodeId!);
+      },
+    );
+    return emit(state.toList());
   }
 
   sortTitleLength() {
-    state.sort((a, b) {
-      return a.title!.length.compareTo(b.title!.length);
-    });
-    // return emit(state);
+    // TODO could this package be of any help? https://pub.dev/packages/flutter_bloc_list_manager
+    state.sort(
+      (a, b) {
+        return a.title!.length.compareTo(b.title!.length);
+      },
+    );
+    return emit(state.toList());
   }
 }
