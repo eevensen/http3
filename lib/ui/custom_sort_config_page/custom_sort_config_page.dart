@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CustomSortConfigPage extends ConsumerWidget {
+class CustomSortConfigPage extends StatelessWidget {
   const CustomSortConfigPage({Key? key}) : super(key: key);
   static const String routeString = 'custom-sort-config-page';
 
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Custom Sort Config Page'),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../logic/cubit/articles_cubit.dart';
 import '../custom_sort_config_page/custom_sort_config_page.dart';
 
 class MenuDrawer extends StatelessWidget {
@@ -16,13 +18,13 @@ class MenuDrawer extends StatelessWidget {
             title: Text('Sort: nodeId'),
             onTap: () {
               print('sort by nodeID');
-              // context.read(apiProvider).sortByNid(articles);
+              BlocProvider.of<ArticlesCubit>(context).sortByNid();
             },
           ),
           ListTile(
             onTap: () {
               print('sort by title length');
-              // context.read(apiProvider).sortTitleLength(articles);
+              BlocProvider.of<ArticlesCubit>(context).sortTitleLength();
             },
             title: Text('Sort: length'),
           ),

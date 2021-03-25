@@ -15,22 +15,9 @@ class ApiService {
         Uri.https('dautzenberg.europabasen.no', 'api/v2/article').toString();
     final response = await dio.get(uriString);
     final results = List<Map<String, dynamic>>.from(response.data);
-    List<ArticleModel> state = results
+    List<ArticleModel> articles = results
         .map((articleData) => ArticleModel.fromMap(articleData))
         .toList(growable: false);
-    return state;
-  }
-
-  sortByNid(List<ArticleModel> articles) {
-    //TODO I'm confused by how to controll the state of my list of articles. I want to create a statenotiferprovider, but how do I do that based on a FutureProvider? I'm inspired by Reso Coders video on State Notifer (https://youtu.be/3OdciTLjSNA?t=698), but don't know how to combine it with a future provider.
-    articles.sort((a, b) {
-      return a.nodeId!.compareTo(b.nodeId!);
-    });
-  }
-
-  sortTitleLength(List<ArticleModel> articles) {
-    articles.sort((a, b) {
-      return a.title!.length.compareTo(b.title!.length);
-    });
+    return articles;
   }
 }
