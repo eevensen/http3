@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../providers/provider.dart';
+import '../../providers/provider.dart';
 
 class ArticleList extends ConsumerWidget {
   const ArticleList({Key? key}) : super(key: key);
@@ -74,6 +74,7 @@ class ArticleList extends ConsumerWidget {
                 Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Column(
+                    // TODO read current sorting from Riverpod and display in Text widget
                     children: [Text('Current sorting: <VALUE>')],
                   ),
                 )

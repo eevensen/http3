@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CustomSortConfigPage extends ConsumerWidget {
   const CustomSortConfigPage({Key? key}) : super(key: key);
+  static const String routeString = 'custom-sort-config-page';
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
@@ -18,8 +19,9 @@ class CustomSortConfigPage extends ConsumerWidget {
           //     children: [],
           //     onReorder: (oldIndex, newIndex) {
           //       updateMyListItems(oldIndex, newIndex);
-          //       // Inspired from: Flutter Widget of the Week: https://www.youtube.com/watch?v=3fB1mxOsqJE&ab_channel=Flutter
           //     }),
+          // TODO Implement Riverpod to work with the ReorderableListView above
+          // Inspired from: Flutter Widget of the Week: https://www.youtube.com/watch?v=3fB1mxOsqJE&ab_channel=Flutter
         ],
       ),
     );
