@@ -43,5 +43,20 @@ class ArticleController extends StateNotifier<AsyncValue<List<ArticleModel>>> {
     });
   }
 
-  updateMyListItems(oldIndex, newIndex) {}
+  void updateMyListItems(int oldIndex, int newIndex) {
+    print('debbugin 2');
+    state.whenData((listOfArticles) {
+      print('debbugin 3');
+      if (oldIndex < newIndex) {
+        newIndex -= 1;
+      }
+      print('debbugin 4');
+      final item = listOfArticles.removeAt(2);
+      print('debbugin 5');
+      // print(singleArticle);
+      listOfArticles.insert(newIndex, item);
+      print(listOfArticles);
+      state = AsyncValue.data(listOfArticles);
+    });
+  }
 }

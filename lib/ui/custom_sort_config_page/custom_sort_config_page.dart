@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:http3/controllers/article_controller.dart';
 
 class CustomSortConfigPage extends ConsumerWidget {
   const CustomSortConfigPage({Key? key}) : super(key: key);
@@ -15,19 +16,28 @@ class CustomSortConfigPage extends ConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(child: Text('Custom Sort Config Page')),
-          // ReorderableListView(
-          //     children: [],
-          //     onReorder: (oldIndex, newIndex) {
-          //       updateMyListItems(oldIndex, newIndex);
-          //     }),
-          // TODO Implement Riverpod to work with the ReorderableListView above
-          // Inspired from: Flutter Widget of the Week: https://www.youtube.com/watch?v=3fB1mxOsqJE&ab_channel=Flutter
+          watch(articleControllerProvider.state).when(
+              data: (articles) {
+                return Expanded(
+                  child: ReorderableListView(
+                      children: articles
+                          .map((e) => ListTile(
+                                key: Key(e.nodeId!),
+                                title: Text(e.title!),
+                              ))
+                          .toList(),
+                      onReorder: (oldIndex, newIndex) {
+                        print('debugging');
+                        context
+                            .read(articleControllerProvider)
+                            .updateMyListItems(oldIndex, newIndex);
+                      }),
+                );
+              },
+              loading: () => CircularProgressIndicator(),
+              error: (e, s) => Text('error')),
         ],
       ),
     );
   }
-}
-
-updateMyListItems(oldIndex, newIndex) {
-  // TODO create function that will store a new custom sort state of my articles list
 }
