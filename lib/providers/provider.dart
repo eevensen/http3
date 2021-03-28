@@ -9,7 +9,7 @@ final dioProvider = Provider<DioService>((ref) {
 });
 
 final apiProvider = Provider<ApiService>((ref) {
-  return ApiService.instance;
+  return ApiService([]);
 });
 
 final articleProvider = FutureProvider<List<ArticleModel>>((ref) async {
