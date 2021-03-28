@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http3/logic/cubit/articles_cubit.dart';
+import 'package:http3/models/article_model.dart';
 
 class CustomSortConfigPage extends StatelessWidget {
   const CustomSortConfigPage({Key? key}) : super(key: key);
@@ -10,18 +13,29 @@ class CustomSortConfigPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Custom Sort Config Page'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(child: Text('Custom Sort Config Page')),
-          // ReorderableListView(
-          //     children: [],
-          //     onReorder: (oldIndex, newIndex) {
-          //       updateMyListItems(oldIndex, newIndex);
-          //     }),
-          // TODO Implement Riverpod to work with the ReorderableListView above
-          // Inspired from: Flutter Widget of the Week: https://www.youtube.com/watch?v=3fB1mxOsqJE&ab_channel=Flutter
-        ],
+      body: BlocBuilder<ArticlesCubit, List<ArticleModel>>(
+        builder: (context, articles) {
+          if (articles.isNotEmpty) {
+            return ReorderableListView(
+              key: Key(articles.hashCode.toString()),
+              children: <Widget>[
+                for (int index = 0; index < articles.length; index++)
+                  ListTile(
+                    key: Key(articles[index].nodeId!),
+                    title: Text(articles[index].title!),
+                  ),
+              ],
+              onReorder: (oldIndex, newIndex) {
+                return BlocProvider.of<ArticlesCubit>(context)
+                    .updateMyListItems(oldIndex, newIndex);
+              },
+            );
+          } else {
+            return Expanded(
+              child: Text('heihei'),
+            );
+          }
+        },
       ),
     );
   }
