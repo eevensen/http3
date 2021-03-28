@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:http3/ui/custom_sort_config_page/custom_sort_config_page.dart';
-import 'package:http3/ui/router/app_router.dart';
 
+import '../router/app_router.dart';
 import '../article_list/article_list.dart';
 import 'menu_drawer.dart';
 

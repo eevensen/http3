@@ -28,7 +28,7 @@ class ArticleController extends StateNotifier<AsyncValue<List<ArticleModel>>> {
   sortByNid() {
     state.whenData((listOfArticles) {
       listOfArticles.sort((a, b) {
-        return a.title!.length.compareTo(b.title!.length);
+        return a.nodeId!.compareTo(b.nodeId!);
       });
       state = AsyncValue.data(listOfArticles);
     });
@@ -37,26 +37,22 @@ class ArticleController extends StateNotifier<AsyncValue<List<ArticleModel>>> {
   sortTitleLength() {
     state.whenData((listOfArticles) {
       listOfArticles.sort((a, b) {
-        return a.nodeId!.compareTo(b.nodeId!);
+        return a.title!.length.compareTo(b.title!.length);
       });
       state = AsyncValue.data(listOfArticles);
     });
   }
 
   void updateMyListItems(int oldIndex, int newIndex) {
-    print('debbugin 2');
     state.whenData((listOfArticles) {
-      print('debbugin 3');
+      final listOfArticlesWithoutFixedLength = List<ArticleModel>.from(
+          listOfArticles); // ensures that listOfArticles is not a fixed-length list
       if (oldIndex < newIndex) {
         newIndex -= 1;
       }
-      print('debbugin 4');
-      final item = listOfArticles.removeAt(2);
-      print('debbugin 5');
-      // print(singleArticle);
-      listOfArticles.insert(newIndex, item);
-      print(listOfArticles);
-      state = AsyncValue.data(listOfArticles);
+      final item = listOfArticlesWithoutFixedLength.removeAt(oldIndex);
+      listOfArticlesWithoutFixedLength.insert(newIndex, item);
+      state = AsyncValue.data(listOfArticlesWithoutFixedLength);
     });
   }
 }

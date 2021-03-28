@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http3/controllers/article_controller.dart';
 
-import '../../providers/provider.dart';
-
 class ArticleList extends ConsumerWidget {
   const ArticleList({Key? key}) : super(key: key);
 
