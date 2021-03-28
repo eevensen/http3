@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:http3/controllers/article_controller.dart';
 
 import '../../providers/provider.dart';
 
@@ -8,7 +9,7 @@ class ArticleList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    return watch(articleProvider).when(
+    return watch(articleControllerProvider.state).when(
       loading: () => Center(child: CircularProgressIndicator()),
       error: (e, s) {
         print(e);
@@ -27,8 +28,7 @@ class ArticleList extends ConsumerWidget {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        final listOfArticles = context.read(apiProvider);
-                        listOfArticles.sortByNid();
+                        context.read(articleControllerProvider).sortByNid();
                       },
                       child: Text(
                         'Sort by node id',
@@ -40,8 +40,9 @@ class ArticleList extends ConsumerWidget {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        final listOfArticles = context.read(apiProvider);
-                        listOfArticles.sortTitleLength();
+                        context
+                            .read(articleControllerProvider)
+                            .sortTitleLength();
                       },
                       child: Text(
                         'Sort by title.length',
@@ -52,7 +53,9 @@ class ArticleList extends ConsumerWidget {
                 ),
                 Expanded(
                   child: RefreshIndicator(
-                    onRefresh: () => context.refresh(articleProvider),
+                    onRefresh: () => context
+                        .read(articleControllerProvider)
+                        .getArticlesFromProvider(),
                     child: ListView.separated(
                         itemBuilder: (context, index) {
                           return ListTile(
