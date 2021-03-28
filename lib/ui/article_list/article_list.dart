@@ -28,7 +28,7 @@ class ArticleList extends ConsumerWidget {
                     ElevatedButton(
                       onPressed: () {
                         final listOfArticles = context.read(apiProvider);
-                        listOfArticles.sortByNid(articles);
+                        listOfArticles.sortByNid();
                       },
                       child: Text(
                         'Sort by node id',
@@ -41,7 +41,7 @@ class ArticleList extends ConsumerWidget {
                     ElevatedButton(
                       onPressed: () {
                         final listOfArticles = context.read(apiProvider);
-                        listOfArticles.sortTitleLength(articles);
+                        listOfArticles.sortTitleLength();
                       },
                       child: Text(
                         'Sort by title.length',

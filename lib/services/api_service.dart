@@ -1,13 +1,16 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../models/article_model.dart';
 
-class ApiService {
+class ApiService extends StateNotifier {
+  ApiService(state) : super([]);
+
   // The "._()" makes the DioService class non-instantiable. The class can
   // therefore only be instanciated once using the static variable named
   // ".instance". Example "ApiService.instance" used by the provider/riverpod
-  ApiService._();
-  static final instance = ApiService._();
+
+  // static final instance = ApiService._();
   //TODO Robert, what do you think of this private non-instantiable pattern? From your perspective, what are the advantageous vs. disadvantageous?
 
   Future<List<ArticleModel>> getArticles(Dio dio) async {
@@ -21,15 +24,15 @@ class ApiService {
     return state;
   }
 
-  sortByNid(List<ArticleModel> articles) {
+  sortByNid() {
     //TODO I'm confused by how to controll the state of my list of articles. I want to create a statenotiferprovider, but how do I do that based on a FutureProvider? I'm inspired by Reso Coders video on State Notifer (https://youtu.be/3OdciTLjSNA?t=698), but don't know how to combine it with a future provider.
-    articles.sort((a, b) {
+    state.sort((a, b) {
       return a.nodeId!.compareTo(b.nodeId!);
     });
   }
 
-  sortTitleLength(List<ArticleModel> articles) {
-    articles.sort((a, b) {
+  sortTitleLength() {
+    state.sort((a, b) {
       return a.title!.length.compareTo(b.title!.length);
     });
   }

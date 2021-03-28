@@ -16,7 +16,7 @@ class MenuDrawer extends StatelessWidget {
             title: Text('Sort: nodeId'),
             onTap: () {
               print('sort by nodeID');
-              // context.read(apiProvider).sortByNid(articles);
+              // context.read(apiProvider).sortByNid();
             },
           ),
           ListTile(
