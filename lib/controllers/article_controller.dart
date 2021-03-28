@@ -26,18 +26,22 @@ class ArticleController extends StateNotifier<AsyncValue<List<ArticleModel>>> {
   }
 
   sortByNid() {
-    state.whenData((value) {
-      return value.sort((a, b) {
+    state.whenData((listOfArticles) {
+      listOfArticles.sort((a, b) {
         return a.title!.length.compareTo(b.title!.length);
       });
+      state = AsyncValue.data(listOfArticles);
     });
   }
 
   sortTitleLength() {
-    state.whenData((value) {
-      return value.sort((a, b) {
+    state.whenData((listOfArticles) {
+      listOfArticles.sort((a, b) {
         return a.nodeId!.compareTo(b.nodeId!);
       });
+      state = AsyncValue.data(listOfArticles);
     });
   }
+
+  updateMyListItems(oldIndex, newIndex) {}
 }
