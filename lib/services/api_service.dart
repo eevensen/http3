@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:http3/models/user_model.dart';
 import 'package:http3/services/dio_service.dart';
 
 import '../models/article_model.dart';

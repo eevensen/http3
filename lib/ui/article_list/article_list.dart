@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http3/controllers/article_controller.dart';
+import 'package:http3/controllers/user_controller.dart';
+import 'package:http3/services/api_service.dart';
 
 class ArticleList extends ConsumerWidget {
   const ArticleList({Key? key}) : super(key: key);
@@ -8,7 +10,9 @@ class ArticleList extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     return watch(articleControllerProvider.state).when(
-      loading: () => Center(child: CircularProgressIndicator()),
+      loading: () => Center(
+        child: CircularProgressIndicator(),
+      ),
       error: (e, s) {
         print(e);
         print(s);
@@ -76,7 +80,11 @@ class ArticleList extends ConsumerWidget {
                   padding: const EdgeInsets.all(15.0),
                   child: Column(
                     // TODO read current sorting from Riverpod and display in Text widget
-                    children: [Text('Current sorting: <VALUE>')],
+                    children: [
+                      Text(context
+                          .read(userControllerProvider.state)
+                          .currentSorting)
+                    ],
                   ),
                 )
               ],
